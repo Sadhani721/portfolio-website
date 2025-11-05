@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const fromEmail = process.env.FROM_EMAIL;
-
 export async function POST(req, res) {
   try {
     // Check if required environment variables are set
@@ -14,6 +11,7 @@ export async function POST(req, res) {
       );
     }
 
+    const fromEmail = process.env.FROM_EMAIL;
     if (!fromEmail) {
       return NextResponse.json(
         { error: { message: "FROM_EMAIL is not configured" } },
@@ -30,6 +28,9 @@ export async function POST(req, res) {
         { status: 400 }
       );
     }
+
+    // Initialize Resend with the API key
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     console.log("Sending email:", { to: email, subject, from: fromEmail });
     
