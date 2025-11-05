@@ -1,47 +1,63 @@
-import { EmailTemplate } from '../../components/EmailTemplate';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromEmail = process.env.FROM_EMAIL;
 
-export async function POST(request) {
+export async function POST(req, res) {
   try {
-    // Check if environment variables are set
-    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY === 'your_resend_api_key_here') {
-      console.error('RESEND_API_KEY not configured');
-      return Response.json({ error: 'Email service not configured' }, { status: 500 });
+    // Check if required environment variables are set
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: { message: "RESEND_API_KEY is not configured" } },
+        { status: 500 }
+      );
     }
 
-    if (!process.env.FROM_EMAIL || process.env.FROM_EMAIL === 'your_verified_sender@domain.com') {
-      console.error('FROM_EMAIL not configured');
-      return Response.json({ error: 'Sender email not configured' }, { status: 500 });
+    if (!fromEmail) {
+      return NextResponse.json(
+        { error: { message: "FROM_EMAIL is not configured" } },
+        { status: 500 }
+      );
     }
 
-    const body = await request.json();
-    const { email, subject, message } = body;
+    const { email, subject, message } = await req.json();
+    
+    // Validate input
+    if (!email || !subject || !message) {
+      return NextResponse.json(
+        { error: { message: "Missing required fields: email, subject, or message" } },
+        { status: 400 }
+      );
+    }
 
-    console.log('Sending email with data:', { email, subject, message });
-
-    const { data, error } = await resend.emails.send({
+    console.log("Sending email:", { to: email, subject, from: fromEmail });
+    
+    const data = await resend.emails.send({
       from: fromEmail,
-      to: [fromEmail],
-      subject: subject || 'Contact Form Message',
-      react: EmailTemplate({ 
-        firstName: email?.split('@')[0] || 'Unknown', 
-        message: message,
-        fromEmail: email 
-      }),
+      to: [fromEmail, email],
+      subject: subject,
+      react: (
+        <>
+          <h1>{subject}</h1>
+          <p>Thank you for contacting us!</p>
+          <p>New message submitted:</p>
+          <p>{message}</p>
+        </>
+      ),
     });
-
-    if (error) {
-      console.error('Resend API error:', error);
-      return Response.json({ error: error.message || 'Failed to send email' }, { status: 500 });
-    }
-
-    console.log('Email sent successfully:', data);
-    return Response.json({ success: true, data });
+    
+    return NextResponse.json({ success: true, data });
   } catch (error) {
-    console.error('Route error:', error);
-    return Response.json({ error: error.message || 'Internal server error' }, { status: 500 });
+    console.error("Error sending email:", error);
+    return NextResponse.json(
+      { 
+        error: { 
+          message: error.message || "Failed to send email",
+          details: error.name || "Unknown error"
+        } 
+      },
+      { status: 500 }
+    );
   }
 }

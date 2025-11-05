@@ -1,32 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import { CodeBracketIcon, EyeIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
+const ProjectCard = ({ imgUrl, title, description, technologies, gitUrl, previewUrl }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleCardClick = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
-    <div>
-      <div
-        className="h-52 md:h-72 rounded-t-xl relative group"
-        style={{ background: `url(${imgUrl})`, backgroundSize: "cover" }}
-      >
-        <div className="overlay items-center justify-center absolute top-0 left-0 w-full h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 transition-all duration-500 ">
-          <Link
-            href={gitUrl}
-            className="h-14 w-14 mr-2 border-2 relative rounded-full border-[#ADB7BE] hover:border-white group/link"
-          >
-            <CodeBracketIcon className="h-10 w-10 text-[#ADB7BE] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  cursor-pointer group-hover/link:text-white" />
-          </Link>
-          <Link
-            href={previewUrl}
-            className="h-14 w-14 border-2 relative rounded-full border-[#ADB7BE] hover:border-white group/link"
-          >
-            <EyeIcon className="h-10 w-10 text-[#ADB7BE] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  cursor-pointer group-hover/link:text-white" />
-          </Link>
+    <div 
+      className="bg-[#1a1a2e] rounded-2xl border border-[#2a2a4e] overflow-hidden transition-all duration-300 hover:transform hover:scale-105 hover:border-[#4a4a6e] cursor-pointer h-[380px] flex flex-col"
+      onClick={handleCardClick}
+    >
+      {/* Project Image with Hover and Click Overlay */}
+      <div className="relative h-40 overflow-hidden group shrink-0">
+        <img 
+          src={imgUrl} 
+          alt={title}
+          className={`w-full h-full object-cover transition-all duration-500 group-hover:blur-sm ${
+            isClicked ? 'blur-md' : ''
+          }`}
+        />
+        {/* Overlay with buttons that appear on hover or when clicked */}
+        <div className={`absolute inset-0  transition-all duration-500 flex items-center justify-center ${
+          isClicked 
+            ? 'bg-opacity-80 opacity-100' 
+            : 'bg-opacity-0 group-hover:bg-opacity-60 opacity-0 group-hover:opacity-100'
+        }`}>
+          <div className="flex gap-4">
+            <Link
+              href={previewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-lg ${
+                isClicked 
+                  ? 'translate-y-0' 
+                  : 'transform translate-y-4 group-hover:translate-y-0'
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <EyeIcon className="w-4 h-4" />
+              Live Demo
+            </Link>
+            <Link
+              href={gitUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center gap-2 bg-transparent border-2 border-black/70 hover:border-black hover:bg-black/10 text-black px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-lg backdrop-blur-sm ${
+                isClicked 
+                  ? 'translate-y-0' 
+                  : 'transform translate-y-4 group-hover:translate-y-0'
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <CodeBracketIcon className="w-4 h-4" />
+              GitHub
+            </Link>
+          </div>
         </div>
       </div>
-      <div className="text-white rounded-b-xl mt-3 bg-[#181818]py-6 px-4">
-        <h5 className="text-xl font-semibold mb-2">{title}</h5>
-        <p className="text-[#ADB7BE]">{description}</p>
+
+      {/* Project Content */}
+      <div className="p-5 flex-1 flex flex-col">
+        <h2 className="text-xl font-bold text-white mb-3 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-sans">{title}</h2>
+        <p className="text-gray-300 text-sm leading-relaxed mb-4 font-sans flex-1">
+          {description}
+        </p>
+
+        {/* Technology Tags */}
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {technologies && technologies.map((tech, index) => (
+            <span
+              key={index}
+              className="bg-[#2a2a4a] text-gray-200 px-3 py-1 rounded text-sm font-medium"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
