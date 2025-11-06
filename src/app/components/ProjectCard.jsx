@@ -64,8 +64,8 @@ const ProjectCard = ({ imgUrl, title, description, technologies, gitUrl, preview
 
       {/* Project Content */}
       <div className="p-5 flex-1 flex flex-col">
-        <h2 className="text-xl font-bold text-white mb-3 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-sans">{title}</h2>
-        <p className="text-gray-300 text-sm leading-relaxed mb-4 font-sans flex-1">
+        <h2 className="text-xl font-bold text-white mb-3 hover:text-blue-400 transition-colors duration-200 cursor-pointer font-poppins tracking-wide">{title}</h2>
+        <p className="text-gray-300 text-sm leading-relaxed mb-4 font-montserrat flex-1">
           {description}
         </p>
 
@@ -74,7 +74,7 @@ const ProjectCard = ({ imgUrl, title, description, technologies, gitUrl, preview
           {technologies && technologies.map((tech, index) => (
             <span
               key={index}
-              className="bg-[#2a2a4a] text-gray-200 px-3 py-1 rounded text-sm font-medium"
+              className="bg-[#2a2a4a] text-gray-200 px-3 py-1 rounded text-sm font-medium font-poppins"
             >
               {tech}
             </span>

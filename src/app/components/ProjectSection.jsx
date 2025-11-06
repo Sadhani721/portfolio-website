@@ -47,7 +47,7 @@ const projectsData = [
     image: "/images/projects/Picture1.png",
     technologies: ["Laravel 8", "PHP 7", "Bootsrap", "Docker"],
     gitUrl: "https://github.com/kavindalj/MediTrack_SUSL",
-    previewUrl: "https://firebase-template-demo.netlify.app",
+    previewUrl: "https://drive.google.com/file/d/196Sb6jn-WivjRigwWCU-17-mjlb8_5Iz/view?usp=sharing",
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ const projectsData = [
     image: "/images/projects/6.png",
     technologies: ["Next.js", "JavaScript","React"],
     gitUrl: "https://github.com/Sadhani721/portfolio-website",
-    previewUrl: "https://dev-roadmap-demo.netlify.app",
+    previewUrl: "https://portfolio-website-olive-two-97.vercel.app/",
   }
 ];
 
@@ -74,7 +74,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="pt-20">
-      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12 font-montserrat tracking-wide">
         My Projects
       </h2>
 
