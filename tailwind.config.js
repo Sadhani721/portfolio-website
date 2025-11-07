@@ -8,10 +8,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        'nunito-sans': ['var(--font-nunito-sans)', 'system-ui', 'sans-serif'],
         'poppins': ['var(--font-poppins)', 'sans-serif'],
         'montserrat': ['var(--font-montserrat)', 'sans-serif'],
-        'sans': ['var(--font-geist-sans)', 'sans-serif'],
         'mono': ['var(--font-geist-mono)', 'monospace'],
+        'sans': ['var(--font-nunito-sans)', 'system-ui', 'sans-serif'],
       },
     },
   },

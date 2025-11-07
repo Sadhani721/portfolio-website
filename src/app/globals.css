@@ -5,7 +5,7 @@
   --foreground: #171717;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-nunito-sans: var(--font-nunito-sans);
   --font-mono: var(--font-geist-mono);
   --font-poppins: var(--font-poppins);
   --font-montserrat: var(--font-montserrat);
@@ -18,10 +18,17 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed navbar height */
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito-sans), system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
 }
 
 /* Custom animations */
@@ -38,4 +45,22 @@ body {
 
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out;
+}
+
+/* Ensure proper section rendering */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Prevent image rendering issues */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Fix any potential layout issues */
+* {
+  box-sizing: border-box;
 }

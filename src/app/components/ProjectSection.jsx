@@ -53,7 +53,7 @@ const projectsData = [
     id: 6,
     title: "My portfolio Website",
     description: "An interactive full-stack development roadmap with progress tracking, resources, and learning paths. Helps developers navigate their learning journey effectively.",
-    image: "/images/projects/6.png",
+    image: "/images/projects/myportfolio.png",
     technologies: ["Next.js", "JavaScript","React"],
     gitUrl: "https://github.com/Sadhani721/portfolio-website",
     previewUrl: "https://portfolio-website-olive-two-97.vercel.app/",
@@ -73,7 +73,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="pt-20">
+    <section id="projects" className="pt-12 pb-16">
       <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12 font-montserrat tracking-wide">
         My Projects
       </h2>

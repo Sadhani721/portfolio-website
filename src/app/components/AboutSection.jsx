@@ -153,12 +153,15 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-white pt-20" id="about">
+    <section className="text-white pt-12 pb-16" id="about">
+      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12 font-montserrat tracking-wide">
+        About Me
+      </h2>
       <div className="md:grid md:grid-cols-2 gap-8 items-start py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
         {/* Left Column - About Me & Tabs */}
         <div className="mt-6 md:mt-0 text-left flex flex-col h-full">
-          <h2 className="text-3xl font-bold text-white mb-4">About Me</h2>
-          <p className="text-base lg:text-lg mb-8">
+          <h2 className="text-3xl font-bold text-white mb-4">Biography</h2>
+          <p className="text-base text-[#ADB7BE] lg:text-lg mb-8">
             I am a motivated and detail-oriented software developer with a 
             strong interest in creating efficient, reliable, and user-centered digital solutions. 
             My focus lies in leveraging modern web technologies to solve real-world challenges and deliver meaningful value to users. 

@@ -1,9 +1,10 @@
-import { Geist, Geist_Mono, Poppins, Montserrat } from "next/font/google";
+import { Nunito_Sans, Geist_Mono, Poppins, Montserrat } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -32,7 +33,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${montserrat.variable} antialiased`}
+        className={`${nunitoSans.variable} ${geistMono.variable} ${poppins.variable} ${montserrat.variable} antialiased font-nunito-sans`}
       >
         {children}
       </body>

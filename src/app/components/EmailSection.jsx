@@ -54,11 +54,11 @@ const EmailSection = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 xl:px-16 scroll-mt-20">
+    <section id="contact" className="pt-12 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-24 px-4 sm:px-6 lg:px-8 xl:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">Get In Touch</h2>
+          <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12 font-montserrat tracking-wide">Get In Touch</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Ready to collaborate? Let's discuss your project and bring your ideas to life.
           </p>
