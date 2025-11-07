@@ -64,10 +64,10 @@ const HeroSection = () => {
               Contact me
             </Link>
             <Link
-              href="/SADHANI-SE-CV.pdf"
+              href="/Sadhani Sulakshani CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              download="SADHANI-SE-CV.pdf"
+              download="Sadhani Sulakshani CV.pdf"
               className="px-4 py-2 w-full sm:w-auto text-center rounded-full border-2 bg-linear-to-br from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white text-sm font-medium transition-all duration-300"
             >
               Download CV
